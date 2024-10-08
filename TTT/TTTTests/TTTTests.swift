@@ -15,4 +15,15 @@ struct TTTTests {
         }
     }
 
+    @Test
+    func testMoveOnOccupiedTile() {
+        let viewModel = TicTacToeViewModel()
+
+        viewModel.makeMove(0, 0)  // First move
+        assert(viewModel.board[0][0].type == .Cross)
+
+        viewModel.makeMove(0, 0)  // Attempt to move on same tile
+        assert(viewModel.board[0][0].type == .Cross)  // Should remain Cross, no change
+    }
+
 }
