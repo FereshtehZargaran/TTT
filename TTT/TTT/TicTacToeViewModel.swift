@@ -10,6 +10,9 @@ final class TicTacToeViewModel: ObservableObject {
     }
 
     func makeMove(_ row: Int,_ column: Int) {
+        if(board[row][column].type != TileType.Empty) { return }
+
+        board[row][column].type = turn == TileType.Cross ? TileType.Cross : TileType.Nought
     }
 
     func resetBoard() {
