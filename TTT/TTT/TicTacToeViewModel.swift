@@ -1,34 +1,43 @@
 import Foundation
 
 final class TicTacToeViewModel: ObservableObject {
-    
+
     @Published var turn = TileType.Cross
     @Published var board = [[Tile]]()
-    
+    @Published var showAlert = false
+    @Published var alertMessage = "Draw"
+
     init() {
         resetBoard()
     }
-    
+
     func makeMove(_ row: Int,_ column: Int) {
         if(board[row][column].type != TileType.Empty) { return }
-        
+
         board[row][column].type = turn == TileType.Cross ? TileType.Cross : TileType.Nought
-        
+
         if checkForWinner() {
+            showAlert = true
             let winner = turn == TileType.Cross ? "Crosses" : "Noughts"
+            alertMessage = winner + " Win!"
         } else {
             turn = turn == TileType.Cross ? TileType.Nought : TileType.Cross
         }
+
+        if checkForDraw() {
+            showAlert = true
+            alertMessage = "Draw"
+        }
     }
-    
+
     func resetBoard() {
         board = Array(repeating: Array(repeating: Tile(type: .Empty), count: 3), count: 3)
     }
-    
+
     func checkTurn(_ row: Int, _ column: Int) -> Bool {
         return board[row][column].type == turn
     }
-    
+
     func checkForWinner() -> Bool {
         // Check rows and columns
         for i in 0..<3 {
@@ -39,13 +48,13 @@ final class TicTacToeViewModel: ObservableObject {
                 return true
             }
         }
-        
+
         // Check diagonals
         if (checkTurn(0, 0) && checkTurn(1, 1) && checkTurn(2, 2)) ||  // Main diagonal
             (checkTurn(0, 2) && checkTurn(1, 1) && checkTurn(2, 0)) {   // Anti-diagonal
             return true
         }
-        
+
         return false
     }
 
