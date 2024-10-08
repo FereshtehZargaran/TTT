@@ -48,5 +48,9 @@ final class TicTacToeViewModel: ObservableObject {
         
         return false
     }
-    
+
+    func checkForDraw() -> Bool {
+        return false
+    }
+
 }
