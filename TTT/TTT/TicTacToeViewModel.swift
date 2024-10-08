@@ -19,4 +19,8 @@ final class TicTacToeViewModel: ObservableObject {
         board = Array(repeating: Array(repeating: Tile(type: .Empty), count: 3), count: 3)
     }
 
+    func checkForWinner() -> Bool {
+        return false
+    }
+
 }

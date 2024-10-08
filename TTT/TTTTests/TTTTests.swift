@@ -16,6 +16,15 @@ struct TTTTests {
     }
 
     @Test
+    func testMakeMove() {
+        let viewModel = TicTacToeViewModel()
+
+        viewModel.makeMove(0, 0)
+
+        assert(viewModel.board[0][0].type == .Cross)  // First move should be Cross
+    }
+
+    @Test
     func testMoveOnOccupiedTile() {
         let viewModel = TicTacToeViewModel()
 
@@ -25,5 +34,18 @@ struct TTTTests {
         viewModel.makeMove(0, 0)  // Attempt to move on same tile
         assert(viewModel.board[0][0].type == .Cross)  // Should remain Cross, no change
     }
+
+    @Test
+       func testWinnerInRow() {
+           let viewModel = TicTacToeViewModel()
+
+           viewModel.makeMove(0, 0)  // Cross
+           viewModel.makeMove(1, 0)  // Nought
+           viewModel.makeMove(0, 1)  // Cross
+           viewModel.makeMove(1, 1)  // Nought
+           viewModel.makeMove(0, 2)  // Cross
+
+           assert(viewModel.checkForWinner())
+       }
 
 }
