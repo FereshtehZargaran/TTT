@@ -15,9 +15,6 @@ A simple Tic-Tac-Toe game built using SwiftUI, following the MVVM (Model-View-Vi
 
 A video of the app.
 
-Uploading Simulator Screen Recording - iPhone 16 - 2024-10-08 at 23.38.19.mp4…
-
-
 ## Requirements
 
 - **iOS 16.0+**
