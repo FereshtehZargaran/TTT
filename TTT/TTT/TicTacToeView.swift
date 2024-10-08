@@ -2,7 +2,7 @@ import SwiftUI
 
 struct TicTacToeView: View {
     @StateObject var viewModel = TicTacToeViewModel()
-    
+
     var body: some View {
         VStack(spacing: 8) {
             ForEach(0...2, id: \.self) { row in
@@ -16,7 +16,7 @@ struct TicTacToeView: View {
                 }
             }
         }
-        .background(Color.black)
+        .background(Color(red: 0.95, green: 0.87, blue: 0.72))
         .padding()
         .alert(isPresented: $viewModel.showAlert) {
             Alert(
@@ -31,15 +31,19 @@ struct TicTacToeView: View {
 
 struct TileView: View {
     @Binding var tile: Tile
-    
+
     var body: some View {
         Text(tile.title)
             .font(.system(size: 60))
             .bold()
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .aspectRatio(1, contentMode: .fit)
-            .foregroundColor(tile.color)
-            .background(Color.white)
+            .foregroundColor(tile.tileColor())
+            .background(Color(red: 0.95, green: 0.87, blue: 0.72))
+            .overlay(
+                RoundedRectangle(cornerRadius: 5)
+                    .stroke(Color(red: 0.7, green: 0.45, blue: 0.25), lineWidth: 4)
+            )
     }
 }
 
