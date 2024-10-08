@@ -50,7 +50,7 @@ final class TicTacToeViewModel: ObservableObject {
     }
 
     func checkForDraw() -> Bool {
-        return false
+        return board.flatMap { $0 }.allSatisfy { $0.type != TileType.Empty }
     }
 
 }
